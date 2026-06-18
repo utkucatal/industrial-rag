@@ -67,26 +67,24 @@ part (filter → search → threshold → answer) that runs per question.
 
 ```mermaid
 sequenceDiagram
-    participant U as User
+    actor U as User
     participant App as Streamlit
-    participant S as Sonnet (filters)
-    participant E as bge-m3
+    participant LLM as Sonnet
+    participant Emb as bge-m3
     participant DB as pgvector
-    participant G as Sonnet (answer)
 
     U->>App: "Siemens motors under €2000"
-    App->>S: extract structured filters
-    S-->>App: {manufacturer: Siemens, max_price: 2000}
-    App->>E: embed query
-    E-->>App: 1024-d vector
-    App->>DB: WHERE manufacturer ILIKE 'Siemens' AND price<=2000<br/>ORDER BY embedding <=> qvec LIMIT 5
-    DB-->>App: top-k products (with similarity)
-    Note over App: drop results below threshold
-    alt no results
+    App->>LLM: extract filters
+    LLM-->>App: manufacturer=Siemens, max_price=2000
+    App->>Emb: embed question
+    Emb-->>App: query vector
+    App->>DB: metadata filter + cosine top-k
+    DB-->>App: matches + scores
+    alt nothing above threshold
         App-->>U: "I couldn't find a relevant product"
-    else has results
-        App->>G: products + question (grounded system prompt)
-        G-->>U: answer citing id + url
+    else has matches
+        App->>LLM: products + question (grounded)
+        LLM-->>U: answer with id + url
     end
 ```
 
