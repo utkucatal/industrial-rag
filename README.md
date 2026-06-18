@@ -66,6 +66,7 @@ part (filter → search → threshold → answer) that runs per question.
 ## 🧠 How a query flows
 
 ```mermaid
+%%{init: {'sequence': {'mirrorActors': false}}}%%
 sequenceDiagram
     actor U as User
     participant App as Streamlit
