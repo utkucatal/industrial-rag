@@ -81,12 +81,11 @@ sequenceDiagram
     Emb-->>App: query vector
     App->>DB: metadata filter + cosine top-k
     DB-->>App: matches + scores
-    alt nothing above threshold
-        App-->>U: "I couldn't find a relevant product"
-    else has matches
-        App->>LLM: products + question (grounded)
-        LLM-->>U: answer with id + url
-    end
+    Note over App,DB: drop matches below the similarity threshold
+    App->>LLM: products + question (grounded)
+    LLM-->>App: answer with id + url
+    App-->>U: answer
+    Note over U,DB: no matches above threshold → reply "not found"<br/>(Sonnet never called)
 ```
 
 ---
