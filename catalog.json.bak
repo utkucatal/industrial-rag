@@ -1,0 +1,17 @@
+[
+  {
+    "id": "xxxx",
+    "title": "xxxxx",
+    "manufacturer": "xxxx",
+    "oem_pn": "xxxx",
+    "condition": "xxx",
+    "price_eur": xxxx.xxx,
+    "weight_kg": xxx.xx,
+    "dimensions_cm": "xxxx",
+    "year": xxx,
+    "category": "xxxx",
+    "url": "xxxxx",
+    "description": "xxx"
+    "shop_id": "xxx"
+  }
+]
