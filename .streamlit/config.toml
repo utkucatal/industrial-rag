@@ -1,0 +1,9 @@
+[browser]
+# don't send anonymous usage telemetry
+gatherUsageStats = false
+
+[server]
+headless = true
+# allow the app to render when reached through a port-forward / proxy
+enableCORS = false
+enableXsrfProtection = false

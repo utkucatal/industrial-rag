@@ -1,0 +1,7 @@
+anthropic>=0.69
+sentence-transformers>=2.7
+torchvision>=0.19
+psycopg2-binary>=2.9
+pgvector>=0.3
+streamlit>=1.36
+python-dotenv>=1.0
