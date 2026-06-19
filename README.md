@@ -37,7 +37,7 @@ the catalog — the assistant refuses anything it can't back with a real product
 ```mermaid
 flowchart TD
     subgraph P0["PHASE 0 · Data prep  (once)"]
-        S[xxx.shop] -->|fetch_pages.py| H["pages/*.html<br/>xxx cached pages"]
+        S[x.com] -->|fetch_pages.py| H["pages/*.html<br/>xxx cached pages"]
         H -->|parse_pages.py| C[("catalog.json<br/>xxx clean products")]
     end
 
